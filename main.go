@@ -1,13 +1,16 @@
 package main
-import "fmt"
+import (
+  "fmt"
+  // "gopkg.in/yaml.v2"
+)
 
 func main() {
   checkout := NewCheckout()
 
   fmt.Println("Adding 3 products")
-  checkout.AddProduct("Test Product 1", 100)
-  checkout.AddProduct("Test Product 2", 200)
-  checkout.AddProduct("Test Product 3", 300)
+  checkout.AddProduct("Test Product 2", 2)
+  checkout.AddProduct("Test Product 2", 2)
+  checkout.AddProduct("Test Product 3", 2)
 
   printBreak()
 
@@ -26,7 +29,7 @@ func main() {
   fmt.Println("Your total before discounts is:", checkout.Total())
 
   // Create a simple promotion
-  promoType := "buy_x_get_one_free"
+  promoType := "basket_total_greater_than"
   name := "If you spend over £60, then you get 10 percent off your purchase"
 
   rules := map[string]int {
@@ -36,9 +39,19 @@ func main() {
 
   promotion := NewPromotion(promoType, name, rules);
 
-  // Hold our promotions in a slice
+  // A second promotion
+  rules = map[string]int {
+    "product_code": 001,
+    "condition": 2,
+    "get_free": 1,
+  }
+
+  promotion_two := NewPromotion("buy_x_get_y_free", "Buy Two T-shirts and Get One free", rules);
+
+  // Hold our promotions in a slice (+ add them to the slice)
   promotions := []Promotion{}
   promotions = append(promotions, *promotion)
+  promotions = append(promotions, *promotion_two)
 
   // Create our promo calculator
   promoCalc := NewPromotionCalculator(promotions, checkout.basket, checkout.Total())
