@@ -1,6 +1,6 @@
-package main
+// For storing the logic for a specific promotion.
 
-// import "fmt"
+package main
 
 type Promotion struct {
 	promoType string

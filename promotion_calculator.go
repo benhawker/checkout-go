@@ -1,6 +1,5 @@
 package main
 
-import "fmt"
 
 type PromotionCalculator struct {
 	promotions []Promotion
@@ -13,12 +12,8 @@ func NewPromotionCalculator(promotions []Promotion, basket map[string]int, baske
 	promotionCalculator.promotions = promotions
 	promotionCalculator.basket = basket
 	promotionCalculator.basketTotal = basketTotal 
-
-	// return promotion
-	fmt.Println("It did not blow up.")
 	return promotionCalculator
 }
-
 
 func (promoCalc *PromotionCalculator) Calculate() int {
 	// Simply return the discount amount for now.

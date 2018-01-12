@@ -1,3 +1,5 @@
+// Handles the main checkout flow, add product, remove, get total.
+
 package main
 
 type Checkout struct {
