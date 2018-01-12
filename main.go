@@ -1,36 +1,6 @@
 package main
 import "fmt"
-
-type Checkout struct {
-  basket map[string]int
-}
-
-func NewCheckout() *Checkout {
-  checkout := new(Checkout)
-  checkout.basket= make(map[string]int)
-  return checkout
-}
-
-func (checkout *Checkout) AddProduct(productName string, price int) {
-  checkout.basket[productName] = price
-}
-
-func (checkout *Checkout) RemoveProduct(productName string) {
-  _, ok := checkout.basket[productName];
-
-  if ok {
-    delete(checkout.basket, productName);
-  }
-}
-
-func (checkout *Checkout) Total() int{
-  total := 0
-  for _, v := range checkout.basket { 
-    total += v
-  }
-
-  return total
-}
+// import "strconv"
 
 func main() {
   checkout := NewCheckout()
@@ -46,4 +16,28 @@ func main() {
 
   fmt.Println("Your total is:")
   fmt.Println(checkout.Total())
+
+  promoType := "buy_x_get_one_free"
+  name := "If you spend over £60, then you get 10 percent off your purchase"
+
+  rules := map[string]int {
+    "condition": 60,
+    "discount": 10.00,
+  }
+
+  promotion := NewPromotion(promoType, name, rules);
+
+  promotions := []Promotion{}
+  promotions = append(promotions, *promotion)
+
+  //We now have promotions.
+  fmt.Println(promotions)
+
+  promoCalc := NewPromotionCalculator(promotions, checkout.basket, checkout.Total())
+
+  fmt.Println("Apply this discount:", promoCalc.Calculate())
+
+  promotionalDiscount := promoCalc.Calculate()
+  finalTotal := checkout.Total() - promotionalDiscount
+  fmt.Println(finalTotal)
 } 
