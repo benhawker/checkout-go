@@ -1,10 +1,42 @@
+// https://stackoverflow.com/questions/39147446/return-reference-to-struct-in-go-lang
+
 package main
 import (
   "fmt"
-  // "gopkg.in/yaml.v2"
+  "gopkg.in/yaml.v2"
+  "log"
+  "io/ioutil"
+  "path/filepath"
 )
 
+type Config struct {
+  Products []Product  `yaml:"products"`
+}
+
+type Product struct {
+  Code  int `yaml:"code"`
+  Name  string `yaml:"name"`
+  Price int `yaml:"price"`
+}
+
 func main() {
+  filename, _ := filepath.Abs("./config/products.yml")
+  yamlFile, err := ioutil.ReadFile(filename)
+  if err != nil {
+    log.Fatalf("error: %v", err)
+  }
+
+  var config Config
+
+  err = yaml.Unmarshal(yamlFile, &config)
+  if err != nil {
+      panic(err)
+  }
+
+  fmt.Printf("Value: %#v\n", config.Products)
+  fmt.Printf("Value: %#v\n", config.Products[0].Name)
+
+
   checkout := NewCheckout()
 
   fmt.Println("Adding 3 products")
