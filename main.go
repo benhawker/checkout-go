@@ -28,12 +28,17 @@ func main() {
 
   printBreak()
 
-  fmt.Println("Removing Test Product 3")
+  fmt.Println("Removing Test Product 3.")
   checkout.RemoveProduct(003)
+
+  printBreak()
+  
+  fmt.Println("Removing product not in the basket.")
+  checkout.RemoveProduct(0055)
   
   printBreak()
 
-  fmt.Println("Basket contents:")
+  fmt.Println("Current Basket contents:")
   for k, v := range checkout.Basket { 
     fmt.Println("Product Code", k, "with quantity", v)
   }

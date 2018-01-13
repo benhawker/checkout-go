@@ -4,6 +4,7 @@ package checkout
 
 import (
   products "github.com/checkout-go/products"
+  "fmt"
 )
 
 type Checkout struct {
@@ -31,6 +32,8 @@ func (checkout *Checkout) RemoveProduct(productCode int) {
 
   if ok {
     delete(checkout.Basket, productCode);
+  } else {
+    fmt.Println("We could find this Product in your basket.")
   }
 }
 
