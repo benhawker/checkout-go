@@ -1,0 +1,28 @@
+---
+promotions:
+  - 
+    type: basket_total_greater_than
+    name: "If you spend over £60, then you get 10% off your purchase"
+    condition: 60
+    discount: 10.00
+
+  - 
+    type: product_multiples_greater_or_equal_to
+    name: "If you buy 2 or more travel card holders then the price drops to £8.50 (per unit)."
+    product_code: 001
+    condition: 2
+    discount: 0.75
+
+  - 
+    type: product_multiples_greater_or_equal_to
+    name: "If you buy 3 or more test products then the price drops to £5.00 (per unit)."
+    product_code: 004
+    condition: 3
+    discount: 5.00
+
+  - 
+    type: buy_x_get_y_free
+    name: "Buy Two T-shirts and Get One free"
+    product_code: 003
+    condition: 3
+    get_free: 1
