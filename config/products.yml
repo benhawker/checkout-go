@@ -3,19 +3,19 @@ products:
   -
     code: 001
     name: "Travel Card Holder"
-    price: 9.25
+    price: 10.00
 
   -
     code: 002
     name: "Personalised Cufflinks"
-    price: 45.00
+    price: 20.00
 
   -
     code: 003
     name: "Kids T-Shirt"
-    price: 19.95
+    price: 30.00
 
   -
     code: 004
     name: "Test Product"
-    price: 10.00
+    price: 5.00

@@ -4,43 +4,43 @@ package main
 
 import (
   "fmt"
-  promotions "checkout-go/promotions"
-  products "checkout-go/products"
-  co "checkout-go/checkout"
-  pc "checkout-go/promotioncalculator"
+  promotions "github.com/checkout-go/promotions"
+  products "github.com/checkout-go/products"
+  co "github.com/checkout-go/checkout"
+  pc "github.com/checkout-go/promotioncalculator"
 )
 
 func main() {
-  checkout := co.NewCheckout()
+  var prod products.Products
+  products := prod.GetProducts().Products
+
+  var promo promotions.Promotions
+  promotions := promo.GetPromotions().Promotions
+
+  // Create a new checkout
+  checkout := co.NewCheckout(products)
+  printBreak()
 
   fmt.Println("Adding 3 products")
-  checkout.AddProduct("001", 2)
-  checkout.AddProduct("002", 2)
-  checkout.AddProduct("003", 2)
+  checkout.AddProduct(001, 1)
+  checkout.AddProduct(002, 3)
+  checkout.AddProduct(003, 2)
 
   printBreak()
 
   fmt.Println("Removing Test Product 3")
-  checkout.RemoveProduct("003")
+  checkout.RemoveProduct(003)
   
   printBreak()
 
-  checkout.RemoveProduct("Here is your basket")
+  fmt.Println("Basket contents:")
   for k, v := range checkout.Basket { 
-    fmt.Println(k, v)
+    fmt.Println("Product Code", k, "with quantity", v)
   }
 
   printBreak()
   
   fmt.Println("Your total before discounts is:", checkout.Total())
-
-  var prod products.Products
-  products := prod.GetProducts().Products
-  fmt.Println("Here are your products:", products)
-
-  var promo promotions.Promotions
-  promotions := promo.GetPromotions().Promotions
-  fmt.Println("Here are your promotions:", promotions)
 
   // // Create our promo calculator
   promoCalc := pc.NewPromotionCalculator(promotions, checkout.Basket, checkout.Total())
@@ -55,5 +55,5 @@ func main() {
 }
 
 func printBreak() {
-  fmt.Println("- - - - - - - -")
+  fmt.Println("- - - - - - - - - - - - - - - -")
 }

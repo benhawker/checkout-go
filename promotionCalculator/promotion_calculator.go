@@ -1,16 +1,16 @@
 package promotionCalculator
 
 import (
-  promotions "checkout-go/promotions"
+  promotions "github.com/checkout-go/promotions"
 )
 
 type PromotionCalculator struct {
   promotions []promotions.Promotion
-  basket map[string]int
+  basket map[int]int
   basketTotal int
 }
 
-func NewPromotionCalculator(promotions []promotions.Promotion, basket map[string]int, basketTotal int) *PromotionCalculator {
+func NewPromotionCalculator(promotions []promotions.Promotion, basket map[int]int, basketTotal int) *PromotionCalculator {
   promotionCalculator := new(PromotionCalculator)
   promotionCalculator.promotions = promotions
   promotionCalculator.basket = basket
@@ -19,7 +19,7 @@ func NewPromotionCalculator(promotions []promotions.Promotion, basket map[string
 }
 
 func (promoCalc *PromotionCalculator) Calculate() int {
-  discountTotal := 0 
+  discountTotal := 0
 
   for _, promotion := range promoCalc.promotions {
     if promotion.PromoType == "basket_total_greater_than" {

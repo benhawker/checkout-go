@@ -2,22 +2,31 @@
 
 package checkout
 
+import (
+  products "github.com/checkout-go/products"
+)
+
 type Checkout struct {
-  Basket map[string]int
+  Basket map[int]int
+  productCatalogue []products.Product
 }
 
-func NewCheckout() *Checkout {
+func NewCheckout(productCatalogue []products.Product) *Checkout {
   checkout := new(Checkout)
-  checkout.Basket = make(map[string]int)
+  checkout.Basket = make(map[int]int)
+  checkout.productCatalogue = productCatalogue
   return checkout
 }
 
-func (checkout *Checkout) AddProduct(productCode string, quantity int) {
+func (checkout *Checkout) AddProduct(productCode int, quantity int) {
+  // Refactor of products to map will allow easier 
+  //check that product is in our catalogue
+
   checkout.Basket[productCode] = quantity
 }
 
 // Removes
-func (checkout *Checkout) RemoveProduct(productCode string) {
+func (checkout *Checkout) RemoveProduct(productCode int) {
   _, ok := checkout.Basket[productCode];
 
   if ok {
@@ -27,9 +36,15 @@ func (checkout *Checkout) RemoveProduct(productCode string) {
 
 func (checkout *Checkout) Total() int {
   total := 0
-  // for _, _ := range checkout.basket { 
-    total += 100
-  // }
 
+  for code, quantity := range checkout.Basket {
+    // TODO: Store products in a map with productCode as key 
+    // to remove the need to iterate all products.
+    for _, product := range checkout.productCatalogue {
+      if code == product.Code {
+        total += (quantity * product.Price)
+      }
+    }
+  }
   return total
 }
