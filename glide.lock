@@ -1,0 +1,8 @@
+hash: b19c0777f277baaf8a26638b790f1f4ecbe839fa44660d13d9bdfac32cad2c08
+updated: 2018-01-15T15:04:35.90925788Z
+imports:
+- name: gopkg.in/yaml.v2
+  version: d670f9405373e636a5a2765eea47fac0c9bc91a4
+testImports:
+- name: github.com/cheekybits/is
+  version: 68e9c0620927fb5427fda3708222d0edee89eae9
