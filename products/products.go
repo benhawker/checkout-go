@@ -17,8 +17,8 @@ type Product struct {
   Price int `yaml:"price"`
 }
 
-func (p *Products) GetProducts() *Products {
-  filename, _ := filepath.Abs("./config/products.yml")
+func (p *Products) GetProducts(productsPath string) *Products {
+  filename, _ := filepath.Abs(productsPath)
   
   yamlFile, err := ioutil.ReadFile(filename)
   if err != nil {

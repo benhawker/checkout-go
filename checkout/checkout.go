@@ -3,7 +3,7 @@
 package checkout
 
 import (
-  products "github.com/checkout-go/products"
+  products "github.com/benhawker/checkout-go/products"
   "fmt"
 )
 
@@ -21,8 +21,7 @@ func NewCheckout(productCatalogue []products.Product) *Checkout {
 
 func (checkout *Checkout) AddProduct(productCode int, quantity int) {
   // Refactor of products to map will allow easier 
-  //check that product is in our catalogue
-
+  // check that product is in our catalogue
   checkout.Basket[productCode] = quantity
 }
 

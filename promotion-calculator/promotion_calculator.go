@@ -1,7 +1,7 @@
-package promotionCalculator
+package promotioncalculator
 
 import (
-  promotions "github.com/checkout-go/promotions"
+  promotions "github.com/benhawker/checkout-go/promotions"
 )
 
 type PromotionCalculator struct {

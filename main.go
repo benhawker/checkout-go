@@ -4,18 +4,18 @@ package main
 
 import (
   "fmt"
-  promotions "github.com/checkout-go/promotions"
-  products "github.com/checkout-go/products"
-  co "github.com/checkout-go/checkout"
-  pc "github.com/checkout-go/promotioncalculator"
+  promotions "github.com/benhawker/checkout-go/promotions"
+  products "github.com/benhawker/checkout-go/products"
+  co "github.com/benhawker/checkout-go/checkout"
+  pc "github.com/benhawker/checkout-go/promotion-calculator"
 )
 
 func main() {
   var prod products.Products
-  products := prod.GetProducts().Products
+  products := prod.GetProducts("./config/products.yml").Products
 
   var promo promotions.Promotions
-  promotions := promo.GetPromotions().Promotions
+  promotions := promo.GetPromotions("./config/promotions.yml").Promotions
 
   // Create a new checkout
   checkout := co.NewCheckout(products)

@@ -19,8 +19,8 @@ type Promotion struct {
   GetFree int `yaml:"get_free"`
 }
 
-func (p *Promotions) GetPromotions() *Promotions {
-  filename, _ := filepath.Abs("./config/promotions.yml")
+func (p *Promotions) GetPromotions(promosPath string) *Promotions {
+  filename, _ := filepath.Abs(promosPath)
   
   yamlFile, err := ioutil.ReadFile(filename)
   if err != nil {
